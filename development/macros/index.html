@@ -1,0 +1,1670 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação técnica e de negócio do pipeline de dados financeiros da Innoveo — KOVR Seguradora">
+      
+      
+        <meta name="author" content="KOVR Seguradora BI">
+      
+      
+      
+        <link rel="prev" href="../setup/">
+      
+      
+        <link rel="next" href="../../marts/dictionary/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../dbt_logo.webp">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Referência de Macros - DBT Innoveo Pipeline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#referencia-de-macros-sql" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="DBT Innoveo Pipeline" class="md-header__button md-logo" aria-label="DBT Innoveo Pipeline" data-md-component="logo">
+      
+  <img src="../../dbt_logo.webp" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DBT Innoveo Pipeline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Referência de Macros
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="pink"  aria-label="Modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="pink"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KovrSeguradoraBI/DBT_KOVR_INNOVEO" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KovrSeguradoraBI/DBT_KOVR_INNOVEO
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/layers/" class="md-tabs__link">
+          
+  
+  
+  🏗️ Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../setup/" class="md-tabs__link">
+          
+  
+  
+  🛠️ Guia do Desenvolvedor
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../marts/dictionary/" class="md-tabs__link">
+          
+  
+  
+  📊 Tabelas Marts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../parceiros/" class="md-tabs__link">
+          
+  
+  
+  🤝 Parceiros
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../sobre/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  ℹ️ Sobre
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DBT Innoveo Pipeline" class="md-nav__button md-logo" aria-label="DBT Innoveo Pipeline" data-md-component="logo">
+      
+  <img src="../../dbt_logo.webp" alt="logo">
+
+    </a>
+    DBT Innoveo Pipeline
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KovrSeguradoraBI/DBT_KOVR_INNOVEO" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KovrSeguradoraBI/DBT_KOVR_INNOVEO
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗️ Arquitetura
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/layers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camadas de Transformação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/lineage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrama de Linhagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ Guia do Desenvolvedor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛠️ Guia do Desenvolvedor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup e Execução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência de Macros
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência de Macros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#macros-de-regras-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macros de Regras de Negócio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macros de Regras de Negócio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ajuste_cd_eventocoluna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ajuste_cd_evento(coluna)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajuste_nm_eventocoluna-status_bilhetenone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ajuste_nm_evento(coluna, status_bilhete=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajuste_fifvalor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ajuste_fif(valor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerar_chave_unicauuid_bilhete-uuid_parcela-parcela_col" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gerar_chave_unica(uuid_bilhete, uuid_parcela, parcela_col)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerar_data_basedata_tabela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gerar_data_base(data_tabela)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max_data_modificacaoinfo_modified-parc_modified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        max_data_modificacao(info_modified, parc_modified)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_indexestable-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_indexes(table, columns=[])
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macros-auxiliares-duckdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macros Auxiliares (DuckDB)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-utilitaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macro Utilitária
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Utilitária">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_name-macrosschema_namesql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        schema_name (macros/schema_name.sql)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📊 Tabelas Marts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📊 Tabelas Marts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marts/dictionary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dicionário de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤝 Parceiros
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🤝 Parceiros
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parceiros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sobre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ℹ️ Sobre
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#macros-de-regras-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macros de Regras de Negócio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macros de Regras de Negócio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ajuste_cd_eventocoluna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ajuste_cd_evento(coluna)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajuste_nm_eventocoluna-status_bilhetenone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ajuste_nm_evento(coluna, status_bilhete=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajuste_fifvalor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ajuste_fif(valor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerar_chave_unicauuid_bilhete-uuid_parcela-parcela_col" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gerar_chave_unica(uuid_bilhete, uuid_parcela, parcela_col)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerar_data_basedata_tabela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gerar_data_base(data_tabela)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max_data_modificacaoinfo_modified-parc_modified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        max_data_modificacao(info_modified, parc_modified)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_indexestable-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_indexes(table, columns=[])
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macros-auxiliares-duckdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macros Auxiliares (DuckDB)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-utilitaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macro Utilitária
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Utilitária">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_name-macrosschema_namesql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        schema_name (macros/schema_name.sql)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../setup/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    🛠️ Guia do Desenvolvedor
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <span class="md-tag md-tag-icon md-tag--financeiro">Financeiro</span>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <span class="md-tag md-tag-icon md-tag--intermediate">Intermediate</span>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <span class="md-tag md-tag-icon md-tag--staging">Staging</span>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="referencia-de-macros-sql">Referência de Macros SQL<a class="headerlink" href="#referencia-de-macros-sql" title="Permanent link">&para;</a></h1>
+<p>O projeto define <strong>7 macros de regras de negócio</strong> em <code>macros/regras_negocio_innoveo/</code> e <strong>4 macros auxiliares</strong> em <code>macros/macros_duckdb/</code>. Todas são escritas em Jinja2/SQL no padrão dbt.</p>
+<hr />
+<h2 id="macros-de-regras-de-negocio">Macros de Regras de Negócio<a class="headerlink" href="#macros-de-regras-de-negocio" title="Permanent link">&para;</a></h2>
+<h3 id="ajuste_cd_eventocoluna"><code>ajuste_cd_evento(coluna)</code><a class="headerlink" href="#ajuste_cd_eventocoluna" title="Permanent link">&para;</a></h3>
+<p>Converte o status textual bruto de uma parcela em um <strong>código numérico padronizado de evento financeiro</strong>.</p>
+<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/ajuste_cd_evento.sql"><code>macros/regras_negocio_innoveo/ajuste_cd_evento.sql</code></a></p>
+<p><strong>Tabela de mapeamento:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status bruto (Innoveo)</th>
+<th><code>cd_evento</code></th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>parcela a vencer</code></td>
+<td><strong>101</strong></td>
+<td>A vencer</td>
+</tr>
+<tr>
+<td><code>a vencer</code></td>
+<td><strong>101</strong></td>
+<td>A vencer</td>
+</tr>
+<tr>
+<td><code>parcela paga</code></td>
+<td><strong>201</strong></td>
+<td>Pago</td>
+</tr>
+<tr>
+<td><code>pago</code></td>
+<td><strong>201</strong></td>
+<td>Pago</td>
+</tr>
+<tr>
+<td><code>parcela grátis</code> / <code>parcela gratis</code></td>
+<td><strong>201</strong></td>
+<td>Pago (sem custo)</td>
+</tr>
+<tr>
+<td><code>parcela estornada</code></td>
+<td><strong>301</strong></td>
+<td>Estornado</td>
+</tr>
+<tr>
+<td><code>parcela cancelada</code></td>
+<td><strong>401</strong></td>
+<td>Cancelado</td>
+</tr>
+<tr>
+<td><code>parcela cancelada por lmi</code></td>
+<td><strong>401</strong></td>
+<td>Cancelado</td>
+</tr>
+<tr>
+<td><code>não paga</code></td>
+<td><strong>401</strong></td>
+<td>Cancelado / não cobrado</td>
+</tr>
+<tr>
+<td><code>cancelada</code></td>
+<td><strong>401</strong></td>
+<td>Cancelado</td>
+</tr>
+<tr>
+<td>Outros / NULL</td>
+<td><code>NULL</code></td>
+<td>Não mapeado</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SQL gerado:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">case</span><span class="w"> </span><span class="k">lower</span><span class="p">(</span><span class="n">status_parcela</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;parcela a vencer&#39;</span><span class="w">          </span><span class="k">then</span><span class="w"> </span><span class="mi">101</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;a vencer&#39;</span><span class="w">                  </span><span class="k">then</span><span class="w"> </span><span class="mi">101</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;parcela paga&#39;</span><span class="w">              </span><span class="k">then</span><span class="w"> </span><span class="mi">201</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;pago&#39;</span><span class="w">                      </span><span class="k">then</span><span class="w"> </span><span class="mi">201</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;parcela grátis&#39;</span><span class="w">            </span><span class="k">then</span><span class="w"> </span><span class="mi">201</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;parcela gratis&#39;</span><span class="w">            </span><span class="k">then</span><span class="w"> </span><span class="mi">201</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;parcela estornada&#39;</span><span class="w">         </span><span class="k">then</span><span class="w"> </span><span class="mi">301</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;parcela cancelada&#39;</span><span class="w">         </span><span class="k">then</span><span class="w"> </span><span class="mi">401</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;parcela cancelada por lmi&#39;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">401</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;não paga&#39;</span><span class="w">                  </span><span class="k">then</span><span class="w"> </span><span class="mi">401</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="s1">&#39;cancelada&#39;</span><span class="w">                 </span><span class="k">then</span><span class="w"> </span><span class="mi">401</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">null</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">end</span>
+</span></code></pre></div>
+<p><strong>Uso:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="err">{{</span><span class="w"> </span><span class="n">ajuste_cd_evento</span><span class="p">(</span><span class="s1">&#39;p.status&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cd_evento</span>
+</span></code></pre></div>
+<hr />
+<h3 id="ajuste_nm_eventocoluna-status_bilhetenone"><code>ajuste_nm_evento(coluna, status_bilhete=None)</code><a class="headerlink" href="#ajuste_nm_eventocoluna-status_bilhetenone" title="Permanent link">&para;</a></h3>
+<p>Normaliza textos livres de status de parcela para <strong>valores canônicos</strong> consistentes em todo o pipeline.</p>
+<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/ajuste_nm_evento.sql"><code>macros/regras_negocio_innoveo/ajuste_nm_evento.sql</code></a></p>
+<p><strong>Mapeamento de normalização:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Entrada (bruta)</th>
+<th>Saída (canônica)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'não paga'</code></td>
+<td><code>'parcela a vencer'</code></td>
+</tr>
+<tr>
+<td><code>'pago'</code></td>
+<td><code>'parcela paga'</code></td>
+</tr>
+<tr>
+<td><code>like 'gr%'</code> (grátis, gratis)</td>
+<td><code>'parcela grátis'</code></td>
+</tr>
+<tr>
+<td><code>'a vencer'</code></td>
+<td><code>'parcela a vencer'</code></td>
+</tr>
+<tr>
+<td><code>'cancelada'</code> (com bilhete cancelado)</td>
+<td><code>'parcela cancelada'</code></td>
+</tr>
+<tr>
+<td><code>NULL</code> ou <code>'0'</code> (com bilhete cancelado)</td>
+<td><code>'parcela cancelada'</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Parâmetro <code>status_bilhete</code> — caso especial</p>
+<p>Quando o <code>status_bilhete</code> é <code>'cancelled'</code> e o status da parcela é <code>NULL</code> ou <code>'0'</code>, a macro infere que a parcela deve ser marcada como <code>'parcela cancelada'</code>. Esse caso ocorre em produtos onde o cancelamento do bilhete não propaga o status para as parcelas na Innoveo.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- Com status_bilhete como contexto adicional</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="err">{{</span><span class="w"> </span><span class="n">ajuste_nm_evento</span><span class="p">(</span><span class="s1">&#39;p.status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;i.info_status&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">status_parcela</span>
+</span></code></pre></div>
+</div>
+<p><strong>Uso:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- Sem contexto de bilhete</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="err">{{</span><span class="w"> </span><span class="n">ajuste_nm_evento</span><span class="p">(</span><span class="s1">&#39;p.status&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">status_parcela</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">-- Com contexto de bilhete (recomendado)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="err">{{</span><span class="w"> </span><span class="n">ajuste_nm_evento</span><span class="p">(</span><span class="s1">&#39;p.status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;i.info_status&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">status_parcela</span>
+</span></code></pre></div>
+<hr />
+<h3 id="ajuste_fifvalor"><code>ajuste_fif(valor)</code><a class="headerlink" href="#ajuste_fifvalor" title="Permanent link">&para;</a></h3>
+<p>Padroniza o indicador <strong>FIF (Parcela Grátis)</strong> para um flag binário <code>INTEGER</code>.</p>
+<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/ajuste_fif.sql"><code>macros/regras_negocio_innoveo/ajuste_fif.sql</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th>Saída</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NULL</code>, <code>'false'</code>, <code>'nan'</code>, <code>'n'</code>, <code>'no'</code></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td><code>'sim'</code>, <code>'true'</code>, <code>'s'</code>, <code>'yes'</code></td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td>Qualquer outro valor</td>
+<td><strong>0</strong> (default)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">O que é FIF?</p>
+<p>FIF indica que possui parcela <strong>grátis</strong> — ou seja, não há cobrança financeira ao cliente..</p>
+</div>
+<p><strong>Uso:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="err">{{</span><span class="w"> </span><span class="n">ajuste_fif</span><span class="p">(</span><span class="s1">&#39;i.info_fif_fifquote&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">fif</span>
+</span></code></pre></div>
+<hr />
+<h3 id="gerar_chave_unicauuid_bilhete-uuid_parcela-parcela_col"><code>gerar_chave_unica(uuid_bilhete, uuid_parcela, parcela_col)</code><a class="headerlink" href="#gerar_chave_unicauuid_bilhete-uuid_parcela-parcela_col" title="Permanent link">&para;</a></h3>
+<p>Gera a <strong>chave primária composta</strong> das tabelas Marts, que combina os três identificadores de uma linha financeira.</p>
+<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/gerar_chave_unica.sql"><code>macros/regras_negocio_innoveo/gerar_chave_unica.sql</code></a></p>
+<p><strong>SQL gerado:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">concat</span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="n">uuid_bilhete</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="n">uuid_parcela</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="n">nr_parcela</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">-- Exemplo de valor: &#39;a1b2c3d4-..._e5f6g7h8-..._1&#39;</span>
+</span></code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">Chave única nos Marts</p>
+<p>A <code>chave_uuid_parcela</code> é a <code>unique_key</code> usada na estratégia incremental de <code>innoveo_financeiro_demais</code>. Nunca remova ou altere a lógica desta macro sem avaliar o impacto nos índices e na estratégia de upsert.</p>
+</div>
+<p><strong>Uso:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="err">{{</span><span class="w"> </span><span class="n">gerar_chave_unica</span><span class="p">(</span><span class="s1">&#39;i.uuid_bilhete&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;p.uuid_parcela&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;p.nr_parcela&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">as</span><span class="w"> </span><span class="n">chave_uuid_parcela</span>
+</span></code></pre></div>
+<hr />
+<h3 id="gerar_data_basedata_tabela"><code>gerar_data_base(data_tabela)</code><a class="headerlink" href="#gerar_data_basedata_tabela" title="Permanent link">&para;</a></h3>
+<p>Converte uma data em um <strong>inteiro de competência</strong> no formato <code>YYYYMM</code>, usado para agregações mensais em BI.</p>
+<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/gerar_data_base.sql"><code>macros/regras_negocio_innoveo/gerar_data_base.sql</code></a></p>
+<p><strong>SQL gerado:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">case</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="n">data_tabela</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">then</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="n">to_char</span><span class="p">(</span><span class="n">data_tabela</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;YYYYMM&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">integer</span><span class="p">)</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">null</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">end</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1">-- Exemplo: DATE &#39;2025-03-15&#39; → 202503</span>
+</span></code></pre></div>
+<p><strong>Uso:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="err">{{</span><span class="w"> </span><span class="n">gerar_data_base</span><span class="p">(</span><span class="s1">&#39;p.data_vencimento&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">data_comp_vencimento</span><span class="p">,</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="err">{{</span><span class="w"> </span><span class="n">gerar_data_base</span><span class="p">(</span><span class="s1">&#39;p.data_pagamento&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w">   </span><span class="k">as</span><span class="w"> </span><span class="n">data_comp_pagamento</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="err">{{</span><span class="w"> </span><span class="n">gerar_data_base</span><span class="p">(</span><span class="s1">&#39;p.data_estorno&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w">     </span><span class="k">as</span><span class="w"> </span><span class="n">data_comp_estorno</span>
+</span></code></pre></div>
+<hr />
+<h3 id="max_data_modificacaoinfo_modified-parc_modified"><code>max_data_modificacao(info_modified, parc_modified)</code><a class="headerlink" href="#max_data_modificacaoinfo_modified-parc_modified" title="Permanent link">&para;</a></h3>
+<p>Retorna a <strong>data de modificação mais recente</strong> entre infos e parcelas, usada como critério de incrementalidade.</p>
+<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/max_data_modificacao.sql"><code>macros/regras_negocio_innoveo/max_data_modificacao.sql</code></a></p>
+<p><strong>SQL gerado:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">greatest</span><span class="p">(</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="n">info_modified</span><span class="p">::</span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">::</span><span class="k">TIMESTAMP</span><span class="p">),</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="n">parc_modified</span><span class="p">::</span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">::</span><span class="k">TIMESTAMP</span><span class="p">)</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Por que <code>'2000-01-01'</code> como fallback?</p>
+<p>O <code>coalesce</code> com <code>'2000-01-01'</code> garante que registros com <code>modified</code> nulo ainda sejam comparáveis, sem propagar NULL para o <code>GREATEST</code>. Isso evita que registros antigos sejam erroneamente ignorados pela janela incremental.</p>
+</div>
+<p><strong>Uso:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="err">{{</span><span class="w"> </span><span class="n">max_data_modificacao</span><span class="p">(</span><span class="s1">&#39;i.data_atualizacao&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;p.data_atualizacao&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">as</span><span class="w"> </span><span class="n">max_data_modificacao</span>
+</span></code></pre></div>
+<hr />
+<h3 id="create_indexestable-columns"><code>create_indexes(table, columns=[])</code><a class="headerlink" href="#create_indexestable-columns" title="Permanent link">&para;</a></h3>
+<p>Gera e executa DDL de <code>CREATE INDEX IF NOT EXISTS</code> para cada coluna especificada, seguido de <code>ANALYZE</code>.</p>
+<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/create_indexes.sql"><code>macros/regras_negocio_innoveo/create_indexes.sql</code></a></p>
+<p><strong>SQL gerado (por coluna):</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_innoveo_financeiro_demais_uuid_bilhete</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">financeiro</span><span class="p">.</span><span class="n">innoveo_financeiro_demais</span><span class="w"> </span><span class="p">(</span><span class="n">uuid_bilhete</span><span class="p">);</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">ANALYZE</span><span class="w"> </span><span class="n">financeiro</span><span class="p">.</span><span class="n">innoveo_financeiro_demais</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Uso (via <code>post_hook</code> nos Marts):</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="err">{{</span><span class="w"> </span><span class="n">config</span><span class="p">(</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="n">post_hook</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">        </span><span class="ss">&quot;{{ create_indexes(this, [&#39;uuid_bilhete&#39;, &#39;cd_evento&#39;, &#39;data_comp_vencimento&#39;, ...]) }}&quot;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">19 índices no <code>innoveo_financeiro_demais</code></p>
+<p>O modelo <code>innoveo_financeiro_demais</code> cria 19 índices automaticamente via <code>post_hook</code>, cobrindo as colunas de filtragem e join mais frequentes no BI: <code>uuid_bilhete</code>, <code>cd_evento</code>, <code>data_comp_vencimento</code>, <code>data_comp_pagamento</code>, <code>nm_produto</code>, <code>status_bilhete</code>, entre outros.</p>
+</div>
+<hr />
+<h2 id="macros-auxiliares-duckdb">Macros Auxiliares (DuckDB)<a class="headerlink" href="#macros-auxiliares-duckdb" title="Permanent link">&para;</a></h2>
+<p>Localizadas em <code>macros/macros_duckdb/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Macro</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>importar_tabela_duckdb()</code></td>
+<td>Importa tabelas do Postgres para o DuckDB via <code>httpfs</code></td>
+</tr>
+<tr>
+<td><code>pg_conn()</code></td>
+<td>Gera string de conexão parametrizada ao KOVR_DW</td>
+</tr>
+<tr>
+<td><code>etl_duck_agrupamento_emissao()</code></td>
+<td>Agrega dados de emissão no DuckDB</td>
+</tr>
+<tr>
+<td><code>etl_innoveo_fato_bi_cancelamento()</code></td>
+<td>Lógica de cancelamento específica para o DuckDB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="macro-utilitaria">Macro Utilitária<a class="headerlink" href="#macro-utilitaria" title="Permanent link">&para;</a></h2>
+<h3 id="schema_name-macrosschema_namesql"><code>schema_name</code> (<code>macros/schema_name.sql</code>)<a class="headerlink" href="#schema_name-macrosschema_namesql" title="Permanent link">&para;</a></h3>
+<p>Override do <code>generate_schema_name</code> padrão do dbt. Garante que os schemas <code>staging</code>, <code>financeiro</code> e <code>seeds</code> sejam nomeados corretamente independente do target (<code>prod</code> ou <code>dev</code>):</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">-- Em prod: usa o schema definido no config do modelo</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">-- Em dev:  prefixa com o schema do perfil (ex: public_dbt_staging)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">macro</span><span class="w"> </span><span class="n">generate_schema_name</span><span class="p">(</span><span class="n">custom_schema_name</span><span class="p">,</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endmacro</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "search.highlight", "search.suggest", "content.tabs.link", "content.code.annotate", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Dicion\u00e1rioDeDados": "dicionario", "DuckDB": "duckdb", "Financeiro": "financeiro", "Intermediate": "intermediate", "LGPD": "lgpd", "Marts": "marts", "PicPay": "picpay", "Staging": "staging"}, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
