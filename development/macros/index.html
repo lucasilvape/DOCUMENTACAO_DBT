@@ -1306,7 +1306,7 @@
 <h2 id="macros-de-regras-de-negocio">Macros de Regras de Negócio<a class="headerlink" href="#macros-de-regras-de-negocio" title="Permanent link">&para;</a></h2>
 <h3 id="ajuste_cd_eventocoluna"><code>ajuste_cd_evento(coluna)</code><a class="headerlink" href="#ajuste_cd_eventocoluna" title="Permanent link">&para;</a></h3>
 <p>Converte o status textual bruto de uma parcela em um <strong>código numérico padronizado de evento financeiro</strong>.</p>
-<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/ajuste_cd_evento.sql"><code>macros/regras_negocio_innoveo/ajuste_cd_evento.sql</code></a></p>
+<p><strong>Arquivo:</strong> <a href="https://github.com/KovrSeguradoraBI/DBT_KOVR_INNOVEO/blob/main/macros/regras_negocio_innoveo/ajuste_cd_evento.sql"><code>macros/regras_negocio_innoveo/ajuste_cd_evento.sql</code></a></p>
 <p><strong>Tabela de mapeamento:</strong></p>
 <table>
 <thead>
@@ -1396,7 +1396,7 @@
 <hr />
 <h3 id="ajuste_nm_eventocoluna-status_bilhetenone"><code>ajuste_nm_evento(coluna, status_bilhete=None)</code><a class="headerlink" href="#ajuste_nm_eventocoluna-status_bilhetenone" title="Permanent link">&para;</a></h3>
 <p>Normaliza textos livres de status de parcela para <strong>valores canônicos</strong> consistentes em todo o pipeline.</p>
-<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/ajuste_nm_evento.sql"><code>macros/regras_negocio_innoveo/ajuste_nm_evento.sql</code></a></p>
+<p><strong>Arquivo:</strong> <a href="https://github.com/KovrSeguradoraBI/DBT_KOVR_INNOVEO/blob/main/macros/regras_negocio_innoveo/ajuste_nm_evento.sql"><code>macros/regras_negocio_innoveo/ajuste_nm_evento.sql</code></a></p>
 <p><strong>Mapeamento de normalização:</strong></p>
 <table>
 <thead>
@@ -1449,7 +1449,7 @@
 <hr />
 <h3 id="ajuste_fifvalor"><code>ajuste_fif(valor)</code><a class="headerlink" href="#ajuste_fifvalor" title="Permanent link">&para;</a></h3>
 <p>Padroniza o indicador <strong>FIF (Parcela Grátis)</strong> para um flag binário <code>INTEGER</code>.</p>
-<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/ajuste_fif.sql"><code>macros/regras_negocio_innoveo/ajuste_fif.sql</code></a></p>
+<p><strong>Arquivo:</strong> <a href="https://github.com/KovrSeguradoraBI/DBT_KOVR_INNOVEO/blob/main/macros/regras_negocio_innoveo/ajuste_fif.sql"><code>macros/regras_negocio_innoveo/ajuste_fif.sql</code></a></p>
 <table>
 <thead>
 <tr>
@@ -1482,7 +1482,7 @@
 <hr />
 <h3 id="gerar_chave_unicauuid_bilhete-uuid_parcela-parcela_col"><code>gerar_chave_unica(uuid_bilhete, uuid_parcela, parcela_col)</code><a class="headerlink" href="#gerar_chave_unicauuid_bilhete-uuid_parcela-parcela_col" title="Permanent link">&para;</a></h3>
 <p>Gera a <strong>chave primária composta</strong> das tabelas Marts, que combina os três identificadores de uma linha financeira.</p>
-<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/gerar_chave_unica.sql"><code>macros/regras_negocio_innoveo/gerar_chave_unica.sql</code></a></p>
+<p><strong>Arquivo:</strong> <a href="https://github.com/KovrSeguradoraBI/DBT_KOVR_INNOVEO/blob/main/macros/regras_negocio_innoveo/gerar_chave_unica.sql"><code>macros/regras_negocio_innoveo/gerar_chave_unica.sql</code></a></p>
 <p><strong>SQL gerado:</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">concat</span><span class="p">(</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="n">uuid_bilhete</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="p">,</span>
@@ -1502,7 +1502,7 @@
 <hr />
 <h3 id="gerar_data_basedata_tabela"><code>gerar_data_base(data_tabela)</code><a class="headerlink" href="#gerar_data_basedata_tabela" title="Permanent link">&para;</a></h3>
 <p>Converte uma data em um <strong>inteiro de competência</strong> no formato <code>YYYYMM</code>, usado para agregações mensais em BI.</p>
-<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/gerar_data_base.sql"><code>macros/regras_negocio_innoveo/gerar_data_base.sql</code></a></p>
+<p><strong>Arquivo:</strong> <a href="https://github.com/KovrSeguradoraBI/DBT_KOVR_INNOVEO/blob/main/macros/regras_negocio_innoveo/gerar_data_base.sql"><code>macros/regras_negocio_innoveo/gerar_data_base.sql</code></a></p>
 <p><strong>SQL gerado:</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">case</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="n">data_tabela</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span>
@@ -1519,7 +1519,7 @@
 <hr />
 <h3 id="max_data_modificacaoinfo_modified-parc_modified"><code>max_data_modificacao(info_modified, parc_modified)</code><a class="headerlink" href="#max_data_modificacaoinfo_modified-parc_modified" title="Permanent link">&para;</a></h3>
 <p>Retorna a <strong>data de modificação mais recente</strong> entre infos e parcelas, usada como critério de incrementalidade.</p>
-<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/max_data_modificacao.sql"><code>macros/regras_negocio_innoveo/max_data_modificacao.sql</code></a></p>
+<p><strong>Arquivo:</strong> <a href="https://github.com/KovrSeguradoraBI/DBT_KOVR_INNOVEO/blob/main/macros/regras_negocio_innoveo/max_data_modificacao.sql"><code>macros/regras_negocio_innoveo/max_data_modificacao.sql</code></a></p>
 <p><strong>SQL gerado:</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">greatest</span><span class="p">(</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="n">info_modified</span><span class="p">::</span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">::</span><span class="k">TIMESTAMP</span><span class="p">),</span>
@@ -1537,7 +1537,7 @@
 <hr />
 <h3 id="create_indexestable-columns"><code>create_indexes(table, columns=[])</code><a class="headerlink" href="#create_indexestable-columns" title="Permanent link">&para;</a></h3>
 <p>Gera e executa DDL de <code>CREATE INDEX IF NOT EXISTS</code> para cada coluna especificada, seguido de <code>ANALYZE</code>.</p>
-<p><strong>Arquivo:</strong> <a href="../../macros/regras_negocio_innoveo/create_indexes.sql"><code>macros/regras_negocio_innoveo/create_indexes.sql</code></a></p>
+<p><strong>Arquivo:</strong> <a href="https://github.com/KovrSeguradoraBI/DBT_KOVR_INNOVEO/blob/main/macros/regras_negocio_innoveo/create_indexes.sql"><code>macros/regras_negocio_innoveo/create_indexes.sql</code></a></p>
 <p><strong>SQL gerado (por coluna):</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_innoveo_financeiro_demais_uuid_bilhete</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">financeiro</span><span class="p">.</span><span class="n">innoveo_financeiro_demais</span><span class="w"> </span><span class="p">(</span><span class="n">uuid_bilhete</span><span class="p">);</span>

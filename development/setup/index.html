@@ -1484,7 +1484,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>dbt<span class="w"> </span>debug
 </span></code></pre></div>
 <p>Saída esperada:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Connection test: OK connection ok
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Connection test: connection ok
 </span></code></pre></div></p>
 <hr />
 <h2 id="4-execucao-completa-do-pipeline">4. Execução Completa do Pipeline<a class="headerlink" href="#4-execucao-completa-do-pipeline" title="Permanent link">&para;</a></h2>
@@ -1546,8 +1546,8 @@
 </span></code></pre></div>
 <h3 id="44-gerar-e-servir-documentacao-dbt">4.4 Gerar e Servir Documentação dbt<a class="headerlink" href="#44-gerar-e-servir-documentacao-dbt" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>dbt<span class="w"> </span>docs<span class="w"> </span>generate
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>dbt<span class="w"> </span>docs<span class="w"> </span>serve
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># Acesse http://localhost:8080</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>dbt<span class="w"> </span>docs<span class="w"> </span>serve<span class="w"> </span>--port<span class="w"> </span><span class="m">8082</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># Acesse http://localhost:8082</span>
 </span></code></pre></div>
 <hr />
 <h2 id="5-seletores-uteis">5. Seletores Úteis<a class="headerlink" href="#5-seletores-uteis" title="Permanent link">&para;</a></h2>
